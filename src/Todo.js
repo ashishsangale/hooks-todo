@@ -3,8 +3,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
-import Grid from '@material-ui/core/Grid'
+import Grid from '@material-ui/core/Grid';
 import Todolist from './Todolist';
+import Todoform from './Todoform';
 
 function Todo() {
     const todolist = [
@@ -13,6 +14,9 @@ function Todo() {
         {id:3, task: 'designated survivour', completed: false}
     ]
     const [todos, setTodos] = useState(todolist)
+    const addTodo = newTodoText => {
+        setTodos([...todos,{id:4, task:newTodoText, completed: true}])
+    }
 
     return (
         <Paper style={{
@@ -26,6 +30,7 @@ function Todo() {
                     <Typography variant='inherit'>Todo List</Typography>
                 </Toolbar>
             </AppBar>
+            <Todoform addTodo={addTodo}/>
             <Todolist todos={todos}/>
         </Paper>
     )
