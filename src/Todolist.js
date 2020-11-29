@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoItem from './TodoItem'
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,7 +13,7 @@ export default function Todolist(props) {
             <>
             <ListItem>
                 <ListItemText>
-                    {todo.task}
+                   <TodoItem task={todo.task} key={todo.id} completed={todo.completed}/>
                 </ListItemText>
             </ListItem>
             <Divider/>
