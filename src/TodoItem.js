@@ -10,12 +10,12 @@ import EditIcon from '@material-ui/icons/Edit';
 function TodoItem(props) {
     return (
         <ListItem>
-            <Checkbox tabIndex={-1} checked={props.completed}/>
-           <ListItemText>
+            <Checkbox tabIndex={-1} checked={props.completed} onClick={() => props.updateTodo(props.id)}/>
+           <ListItemText style={{textDecoration: props.completed? 'line-through': 'none'}}>
                 {props.task}
            </ListItemText>
            <ListItemSecondaryAction>
-               <IconButton>
+               <IconButton onClick={() => props.removeTodo(props.id)}>
                    <DeleteIcon/>
                </IconButton>
                <IconButton>

@@ -13,7 +13,13 @@ export default function Todolist(props) {
             <>
             <ListItem>
                 <ListItemText>
-                   <TodoItem task={todo.task} key={todo.id} completed={todo.completed}/>
+                   <TodoItem 
+                   task={todo.task}
+                   id={todo.id} 
+                   key={todo.id} 
+                   completed={todo.completed} 
+                   removeTodo={props.removeTodo}
+                   updateTodo={props.updateTodo}/>
                 </ListItemText>
             </ListItem>
             <Divider/>

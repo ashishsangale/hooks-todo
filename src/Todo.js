@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
+import uuid from 'uuid/dist/v4'
 
 function Todo() {
     const todolist = [
@@ -15,7 +16,18 @@ function Todo() {
     ]
     const [todos, setTodos] = useState(todolist)
     const addTodo = newTodoText => {
-        setTodos([...todos,{id:4, task:newTodoText, completed: true}])
+        setTodos([...todos,{id:uuid(), task:newTodoText, completed: true}])
+    }
+
+    const removeTodo = todoId => {
+        const updatedTodo = todos.filter(todo => todo.id !== todoId)
+        setTodos(updatedTodo)
+    }
+
+    const updateTodo = todoId => {
+        const updatedTodo = todos.map(todo => 
+            todo.id === todoId ? {...todo, completed: !todo.completed}: todo)
+        setTodos(updatedTodo)
     }
 
     return (
@@ -33,7 +45,7 @@ function Todo() {
             <Grid container justify='center' style={{marginTop: '1rem'}}>
                 <Grid item xs={11} md={8} lg={4}>
                     <Todoform addTodo={addTodo}/>
-                    <Todolist todos={todos}/>
+                    <Todolist todos={todos} removeTodo={removeTodo} updateTodo={updateTodo}/>
                 </Grid>
             </Grid>
         </Paper>
