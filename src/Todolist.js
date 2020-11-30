@@ -19,7 +19,8 @@ export default function Todolist(props) {
                    key={todo.id} 
                    completed={todo.completed} 
                    removeTodo={props.removeTodo}
-                   updateTodo={props.updateTodo}/>
+                   updateTodo={props.updateTodo}
+                   editTodo={props.editTodo}/>
                 </ListItemText>
             </ListItem>
             <Divider/>
