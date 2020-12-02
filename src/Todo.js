@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Todolist from './Todolist';
 import Todoform from './Todoform';
 import Paper from '@material-ui/core/Paper';
@@ -9,11 +9,13 @@ import Grid from '@material-ui/core/Grid';
 import uuid from 'uuid/dist/v4'
 
 function Todo() {
-    const todolist = [
-        {id:1, task: 'Complete Onboarding', completed: true},
-        {id:2, task: 'Track HDFC application', completed: false},
-        {id:3, task: 'designated survivour', completed: false}
-    ]
+
+    const todolist = JSON.parse(window.localStorage.getItem('todos') || '[]')
+    // const todolist = [
+    //     {id:1, task: 'Complete Onboarding', completed: true},
+    //     {id:2, task: 'Track HDFC application', completed: false},
+    //     {id:3, task: 'designated survivour', completed: false}
+    // ]
     const [todos, setTodos] = useState(todolist)
     const addTodo = newTodoText => {
         setTodos([...todos,{id:uuid(), task:newTodoText, completed: true}])
@@ -29,6 +31,10 @@ function Todo() {
             todo.id === todoId ? {...todo, completed: !todo.completed}: todo)
         setTodos(updatedTodo)
     }
+
+    useEffect(() => {
+        window.localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
 
     const editTodo = (todoId,newTask) => {
         const updatedTodo = todos.map(todo => 
