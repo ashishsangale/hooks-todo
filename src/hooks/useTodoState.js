@@ -1,9 +1,9 @@
-import {useState} from 'react';
+import useLocalStorageState from './useLocalStorageState'
 import uuid from 'uuid/dist/v4';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default initialTodo => {    
-    const [todos, setTodos] = useState(initialTodo)
+    const [todos, setTodos] = useLocalStorageState('keys',initialTodo)
     const addTodo = newTodoText => {
         setTodos([...todos,{id:uuid(), task:newTodoText, completed: true}])
     }

@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 function Todo() {
 
-    const todolist = JSON.parse(window.localStorage.getItem('todos') || '[]')
+    const todolist = []
     const{todos, addTodo, removeTodo, updateTodo, editTodo} = useTodoState(todolist)
 
     useEffect(() => {
