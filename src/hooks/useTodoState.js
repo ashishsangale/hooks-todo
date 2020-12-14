@@ -5,7 +5,7 @@ import uuid from 'uuid/dist/v4';
 export default initialTodo => {    
     const [todos, setTodos] = useLocalStorageState('keys',initialTodo)
     const addTodo = newTodoText => {
-        setTodos([...todos,{id:uuid(), task:newTodoText, completed: true}])
+        setTodos([...todos,{id:uuid(), task:newTodoText, completed: false}])
     }
 
     const removeTodo = todoId => {
