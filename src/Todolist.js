@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import { TodosContext } from './context/Todos.Context';
 
 export default function Todolist() {
-    const {todos} = useContext(TodosContext)
+    const todos = useContext(TodosContext)
     const todolist = todos.map(todo => (
         <List>
             <>

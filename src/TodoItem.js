@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, memo} from 'react';
 import EditTodoForm from './EditTodoForm';
 import useToggleState from './hooks/useToggleState'
 import ListItem from '@material-ui/core/ListItem';
@@ -8,11 +8,11 @@ import IconButton from '@material-ui/core/IconButton'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit'; 
-import { TodosContext } from './context/Todos.Context';
+import { DispatchContext } from './context/Todos.Context';
 
 function TodoItem({id, task, completed}) {
     const [isEditing, toggle] = useToggleState(false)
-    const {dispatch} = useContext(TodosContext)
+    const dispatch = useContext(DispatchContext)
     return (
         <ListItem>
             {isEditing ? <EditTodoForm id={id} task={task} toggle={toggle} /> :
@@ -35,4 +35,4 @@ function TodoItem({id, task, completed}) {
     )
 }
 
-export default TodoItem;
+export default memo(TodoItem);    //using memo as alternative to pureComponent
